@@ -151,9 +151,13 @@ class ResidentController extends Controller
         return view("practice", $data);
     }
 
-    public function selectHH($puroknumber)
+    public function selectHH()
     {
-        $data['selectHH'] = $this->resModel->choiceHousehold($puroknumber);
+        $data['purok'] = $this->resModel->choicePurok();
+
+        $resID = $this->request->getPost('puroknumber');
+
+        $data['households'] = $this->resModel->choiceHousehold($resID);
 
         return view("practice", $data);
     }

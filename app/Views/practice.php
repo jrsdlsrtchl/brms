@@ -49,7 +49,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="row card-body">
                     <div class="form-group" id="purok">
                         <label>Purok</label>
-                        <select name="purok" id="fetch" class="form-control">
+                        <select name="purok" id="fetchpurok" class="form-control">
                             <option hidden>Select Purok</option>
                             <?php foreach ($purok as $pur) { ?>
                                 <option value="<?= $pur->purok_id; ?>"> <?= $pur->purok_desc; ?></option>
@@ -58,7 +58,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </div>
                     <div class="form-group col-xl-2">
                         <label>Household</label>
-                        <select name="household" class="form-control">
+                        <select name="household" class="form-control" id="selecthouse">
                             <option value="" hidden>Select Household</option>
                         </select>
                     </div>
@@ -76,13 +76,21 @@ $page_session = \CodeIgniter\Config\Services::session();
 <?= $this->section("script"); ?>
 <script>
     $(document).ready(function() {
-        $("#fetch").on('change', function() {
+        $("#fetchpurok").on('change', function() {
             var value = $(this).val();
             // alert(value);
 
             $.ajax({
-                url: "residentcontroller/selectHH",
+                method: "POST",
+                url: "residentcontroller/practice",
+                data: {
+                    'puroknumber': value,
+                },
+                success: function(response) {
+                    console.log(response);
+                }
             });
+
         });
     });
 </script>
