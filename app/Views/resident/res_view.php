@@ -15,7 +15,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Residents Information</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Resident</h1>
     <hr />
     <a href="<?= base_url() ?>residentcontroller/addresident" class="d d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Resident</a>
 </div>
@@ -23,7 +23,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Residents Information</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Residents Table</h6>
     </div>
 
     <?php if ($page_session->getTempdata('success')) : ?>
@@ -53,6 +53,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <th> Age </th>
                         <th> Mobile </th>
                         <th> Date of Birth </th>
+                        <th> Household </th>
                         <th> Purok </th>
                         <th>Action</th>
                     </tr>
@@ -63,21 +64,22 @@ $page_session = \CodeIgniter\Config\Services::session();
                     <!-- Start Foreach Here -->
                     <?php foreach ($residents as $res) { ?>
                         <tr>
-                            <td> <?= $res['lname']; ?> </td>
-                            <td> <?= $res['fname']; ?> </td>
-                            <td> <?= $res['mname']; ?> </td>
-                            <td> <?= $res['gender']; ?> </td>
-                            <td> <?= $res['age']; ?> </td>
-                            <td> <?= $res['mobile']; ?> </td>
-                            <td> <?= $res['datebirth']; ?> </td>
-                            <td> <?= $res['purok']; ?> </td>
+                            <td> <?= $res->lname; ?> </td>
+                            <td> <?= $res->fname; ?> </td>
+                            <td> <?= $res->mname; ?> </td>
+                            <td> <?= $res->gender; ?> </td><q></q>
+                            <td> <?= $res->age; ?> </td>
+                            <td> <?= $res->mobile; ?> </td>
+                            <td> <?= $res->datebirth; ?> </td>
+                            <td> <?= $res->household_desc; ?> </td>
+                            <td> <?= $res->purok_desc; ?> </td>
                             <td>
 
-                                <a href="<?= base_url(); ?>residentcontroller/editresident/<?= $res['uniid']; ?>"><i class="fas fa-edit" style="color:green"></i></a> |
+                                <a href="<?= base_url(); ?>residentcontroller/editresident/<?= $res->uniid; ?>"><i class="fas fa-edit" style="color:green"></i></a> |
 
-                                <a href="<?= base_url(); ?>residentcontroller/deleteresident/<?= $res['uniid']; ?>" onclick="return confirm('Do you really want to delete this record?');"><i class="fa fa-trash" aria-hidden="true" style="color:red" title="Delete this record"></i></a> |
+                                <a href="<?= base_url(); ?>residentcontroller/deleteresident/<?= $res->uniid; ?>" onclick="return confirm('Do you really want to delete this record?');"><i class="fa fa-trash" aria-hidden="true" style="color:red" title="Delete this record"></i></a> |
 
-                                <a href="<?= base_url(); ?>residentcontroller/viewresonly/<?= $res['uniid']; ?>"><i class="fas fa-eye" style="color:blue"></i></a>
+                                <a href="<?= base_url(); ?>residentcontroller/viewresonly/<?= $res->uniid; ?>"><i class="fas fa-eye" style="color:blue"></i></a>
 
                             </td>
                         </tr>

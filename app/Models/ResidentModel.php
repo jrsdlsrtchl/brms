@@ -18,23 +18,46 @@ class ResidentModel extends Model
 
     public function viewRes()
     {
-        $query = $this->db->table('residents')->get();
-        $result = $query->getResultArray();
+        $query = $this->db->table('residents')->select('*');
+        $query->join('purok', 'residents.purok_id = purok.purok_id');
+        $query->join('household', 'residents.household_id = household.household_id');
+        $result = $query->get()->getResult();
 
         if (count($result) >= 0) {
             return $result;
         } else {
             return false;
         }
+
+        // $query = $this->db->table('residents')->get();
+        // $result = $query->getResultArray();
+
+        // if (count($result) >= 0) {
+        //     return $result;
+        // } else {
+        //     return false;
+        // }
     }
 
+
+    // public function editRes($id)
+    // {
+    //     $builder = $this->db->table('residents');
+    //     $builder->where('uniid', $id);
+    //     $result = $builder->get();
+    //     if (count($result->getResult()) == 1) {
+    //         return $result->getRow();
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function editRes($id)
     {
         $builder = $this->db->table('residents');
-        $builder->where('uniid', $id);
+        $builder->join('household', 'residents.household_id = household.household_id')->where('uniid', $id);
         $result = $builder->get();
-        if (count($result->getResultArray()) == 1) {
+        if (count($result->getResult()) == 1) {
             return $result->getRow();
         } else {
             return false;
@@ -73,9 +96,9 @@ class ResidentModel extends Model
 
     public function choiceHousehold($purok)
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok_id', '$purok')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', $purok);
+        $result = $builder->get()->getResult();
 
         return $result;
     }

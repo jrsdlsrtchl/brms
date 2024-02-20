@@ -1,11 +1,20 @@
+<?php
+$page_session = \CodeIgniter\Config\Services::session();
+?>
+
 <?= $this->extend("layout/base"); ?>
 
 <?= $this->section("content"); ?>
 
+<script>
+    setTimeout(function() {
+        $("#hidemessage").hide();
+    }, 3000);
+</script>
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">View Resident</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Resident</h1>
     <hr />
     <a href="<?= base_url() ?>residentcontroller/viewresident" class="d d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-arrow-left"></i> Back </a>
     <a href="<?= base_url() ?>residentcontroller/viewresident" class="d d-sm-inline-block btn btn-sm btn-danger shadow-sm ml-3"><i class="fa-solid fa-print"></i> Print </a>
@@ -18,46 +27,58 @@
             <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Resident's Personal Information</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">View Resident Information</h6>
                 </div>
 
                 <!-- Messages for SUCCESS and ERRORS -->
+                <?php if ($page_session->getTempdata('success')) : ?>
+                    <div id="hidemessage" class="badge badge-success pt-2">
+                        <h6>
+                            <?= $page_session->getTempdata('success'); ?>
+                        </h6>
+                    </div>
+                <?php endif; ?>
+                <?php if ($page_session->getTempdata('error')) : ?>
+                    <div id="hidemessage" class="badge badge-danger pt-2">
+                        <?= $page_session->getTempdata('error'); ?>
+                    </div>
+                <?php endif; ?>
 
                 <div class="row card-body">
                     <!-- First Row -->
                     <div class="form-group col-xl-3">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" name="lname" value="<?= $residents->lname; ?>">
+                        <input type="text" class="form-control" name="lname" value="<?= $residents->lname; ?>" disabled>
                     </div>
-                    <div class=" form-group col-xl-3">
+                    <div class="form-group col-xl-3">
                         <label>First Name</label>
-                        <input type="text" class="form-control" name="fname" value="<?= $residents->fname; ?>">
+                        <input type="text" class="form-control" name="fname" value="<?= $residents->fname; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" name="mname" value="<?= $residents->mname; ?>">
+                        <input type="text" class="form-control" name="mname" value="<?= $residents->mname; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-1">
                         <label>Suffix</label>
-                        <input type="text" class="form-control" name="suffix" value="<?= $residents->suffix; ?>">
+                        <input type="text" class="form-control" name="suffix" value="<?= $residents->suffix; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-2">
                         <label>Nickname</label>
-                        <input type="text" class="form-control" name="nname" value="<?= $residents->nname; ?>">
+                        <input type="text" class="form-control" name="nname" value="<?= $residents->nname; ?>" disabled>
                     </div>
 
                     <!-- Second Row -->
                     <div class="form-group col-xl-2">
                         <label>Date of Birth</label>
-                        <input type="date" class="form-control" name="datebirth" value="<?= $residents->datebirth; ?>">
+                        <input type="date" class="form-control" name="datebirth" value="<?= $residents->datebirth; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-4">
                         <label>Place of Birth</label>
-                        <input type="text" class="form-control" name="placebirth" value="<?= $residents->placebirth; ?>">
+                        <input type="text" class="form-control" name="placebirth" value="<?= $residents->placebirth; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Civil Status</label>
-                        <select name="civilstat" class="form-control">
+                        <select name="civilstat" class="form-control" disabled>
                             <option hidden><?= $residents->civilstat; ?></option>
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
@@ -68,7 +89,7 @@
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Ethinicity</label>
-                        <select name="ethnic" class="form-control">
+                        <select name="ethnic" class="form-control" disabled>
                             <option hidden><?= $residents->ethnic; ?></option>
                             <option value="Tagalog">Tagalog</option>
                             <option value="Bisaya">Bisaya</option>
@@ -88,7 +109,7 @@
                     <!-- Third Row -->
                     <div class="form-group col-xl-3">
                         <label>Educational Attainment</label>
-                        <select name="education" class="form-control">
+                        <select name="education" class="form-control" disabled>
                             <option hidden><?= $residents->education; ?></option>
                             <option value="None">None</option>
                             <option value="ALS">ALS</option>
@@ -111,15 +132,15 @@
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Citizenship</label>
-                        <input type="text" class="form-control" name="citizenship" value="<?= $residents->citizenship; ?>">
+                        <input type="text" class="form-control" name="citizenship" value="<?= $residents->citizenship; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-1">
                         <label>Age</label>
-                        <input type="text" class="form-control" name="age" value="<?= $residents->age; ?>">
+                        <input type="text" class="form-control" name="age" value="<?= $residents->age; ?>" disabled>
                     </div>
                     <div class="form-group col-xl-2">
                         <label>Gender</label>
-                        <select name="gender" class="form-control">
+                        <select name="gender" class="form-control" disabled>
                             <option hidden><?= $residents->gender; ?></option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -127,7 +148,7 @@
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Religion</label>
-                        <select name="religion" class="form-control">
+                        <select name="religion" class="form-control" disabled>
                             <option hidden><?= $residents->religion; ?></option>
                             <option value="Roman Catholic">Roman Catholic</option>
                             <option value="Iglesia Ni Cristo">Iglesia Ni Cristo</option>
@@ -144,15 +165,15 @@
                     <!-- Fourth Row -->
                     <div class="form-group col-xl-3">
                         <label>Occupation</label>
-                        <input type="text" class="form-control" name="occupation" value="<?= $residents->occupation; ?>">
+                        <input type="text" class="form-control" name="occupation" value="<?= $residents->occupation; ?>" disabled>
                     </div>
-                    <div class="form-group col-xl-2">
+                    <div class="form-group col-xl-3">
                         <label>Mobile</label>
-                        <input type="text" class="form-control" name="mobile" value="<?= $residents->mobile; ?>">
+                        <input type="text" class="form-control" name="mobile" value="<?= $residents->mobile; ?>" disabled>
                     </div>
-                    <div class="form-group col-xl-2">
+                    <div class="form-group col-xl-3">
                         <label>House Position</label>
-                        <select name="house_pos" class="form-control">
+                        <select name="house_pos" class="form-control" disabled>
                             <option hidden><?= $residents->house_pos; ?></option>
                             <option value="Father">Father</option>
                             <option value="Mother">Mother</option>
@@ -160,17 +181,9 @@
                             <option value="Daughter">Daughter</option>
                         </select>
                     </div>
-                    <div class="form-group col-xl-2">
-                        <label>House Head</label>
-                        <select name="hh_head" class="form-control">
-                            <option hidden><?= $residents->hh_head; ?></option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
                     <div class="form-group col-xl-1">
                         <label>4P's</label>
-                        <select name="forkeeps" class="form-control">
+                        <select name="forkeeps" class="form-control" disabled>
                             <option hidden><?= $residents->forkeeps; ?></option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -178,15 +191,15 @@
                     </div>
                     <div class="form-group col-xl-1">
                         <label>PWD</label>
-                        <select name="pwd" class="form-control">
+                        <select name="pwd" class="form-control" disabled>
                             <option hidden><?= $residents->pwd; ?></option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
                     </div>
                     <div class="form-group col-xl-1">
-                        <label>Senior</label>
-                        <select name="senior_citizen" class="form-control">
+                        <label>Senior Citizen</label>
+                        <select name="senior_citizen" class="form-control" disabled>
                             <option hidden><?= $residents->senior_citizen; ?></option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -194,22 +207,26 @@
                     </div>
 
                     <!-- Fifth Row -->
-                    <div class="form-group col-xl-3">
+                    <div class="form-group col-xl-2">
                         <label>Purok</label>
-                        <select name="purok" class="form-control">
-                            <option hidden><?= $residents->purok; ?></option>
-                            <option value="Purok-1">Purok-1</option>
-                            <option value="Purok-2">Purok-2</option>
-                            <option value="Purok-3">Purok-3</option>
-                            <option value="Purok-4">Purok-4</option>
-                            <option value="Purok-5">Purok-5</option>
-                            <option value="Purok-6">Purok-6</option>
-                            <option value="Purok-7">Purok-7</option>
+                        <select name="purok_id" class="form-control" id="fetchpurok" disabled>
+                            <?php foreach ($purok as $pur) {
+                                $userID = $pur->purok_id;
+                                $isSelected = $residents->purok_id === $userID ? 'selected' : '';
+                            ?>
+                                <option value="<?= $userID ?> " <?= $isSelected; ?>> <?= $pur->purok_desc; ?> </option>
+                            <?php }; ?>
                         </select>
                     </div>
-                    <div class="form-group col-xl-3">
+                    <div class="form-group col-xl-2">
+                        <label>Household</label>
+                        <select name="household_id" class="form-control" id="selecthouse" disabled>
+                            <option value=" <?= $residents->household_id; ?>"> <?= $residents->household_desc; ?> </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xl-2">
                         <label>User Type</label>
-                        <select name="user_type" class="form-control">
+                        <select name="user_type" class="form-control" disabled>
                             <option hidden><?= $residents->user_type; ?></option>
                             <option value="Admin">Admin</option>
                             <option value="Resident">Resident</option>
@@ -217,11 +234,11 @@
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Username</label>
-                        <input type="text" class="form-control" name="username" value="<?= $residents->username; ?>">
+                        <input type="text" class="form-control" name="username" placeholder="Enter username" disabled>
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Password</label>
-                        <input type="text" class="form-control" name="password" value="<?= $residents->password; ?>">
+                        <input type="text" class="form-control" name="password" placeholder="Enter password" disabled>
                     </div>
 
                 </div>
@@ -234,5 +251,45 @@
 
 </form>
 
+
+<?= $this->endSection(); ?>
+
+<?= $this->section("script"); ?>
+
+<script>
+    $(document).ready(function() {
+        $("#fetchpurok").on('change', function() {
+            var value = $(this).val();
+            // alert(value);
+
+            $.ajax({
+                method: "GET", // GET, POST, PUT, DELETE, PATCH
+                url: "http://localhost/brms/residentcontroller/selectHH",
+                data: {
+                    'puroknumber': value,
+                },
+                success: function(response) {
+
+                    var select = $("#selecthouse")
+
+                    if (response) {
+                        $("#selecthouse").empty()
+                        response.forEach((household) => {
+                            var option = $("<option></option>")
+                            option.text(`${household.household_desc}`)
+                            // option.text(`${household.lname} ${household.fname} ${"Household"}`) // concat 
+                            option.val(household.household_id) // val
+
+                            // <option value="2">This is the text</option>
+
+                            select.append(option) // append
+                        })
+                    }
+                }
+            });
+
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

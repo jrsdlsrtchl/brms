@@ -14,7 +14,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Edit Resident</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Resident</h1>
     <hr />
     <a href="<?= base_url() ?>residentcontroller/viewresident" class="d d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-arrow-left"></i> Back </a>
 </div>
@@ -26,7 +26,7 @@ $page_session = \CodeIgniter\Config\Services::session();
             <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Resident's Personal Information</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Resident Information</h6>
                 </div>
 
                 <!-- Messages for SUCCESS and ERRORS -->
@@ -49,7 +49,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <label>Last Name</label>
                         <input type="text" class="form-control" name="lname" value="<?= $residents->lname; ?>">
                     </div>
-                    <div class=" form-group col-xl-3">
+                    <div class="form-group col-xl-3">
                         <label>First Name</label>
                         <input type="text" class="form-control" name="fname" value="<?= $residents->fname; ?>">
                     </div>
@@ -166,11 +166,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <label>Occupation</label>
                         <input type="text" class="form-control" name="occupation" value="<?= $residents->occupation; ?>">
                     </div>
-                    <div class="form-group col-xl-2">
+                    <div class="form-group col-xl-3">
                         <label>Mobile</label>
                         <input type="text" class="form-control" name="mobile" value="<?= $residents->mobile; ?>">
                     </div>
-                    <div class="form-group col-xl-2">
+                    <div class="form-group col-xl-3">
                         <label>House Position</label>
                         <select name="house_pos" class="form-control">
                             <option hidden><?= $residents->house_pos; ?></option>
@@ -178,14 +178,6 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <option value="Mother">Mother</option>
                             <option value="Son">Son</option>
                             <option value="Daughter">Daughter</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-xl-2">
-                        <label>House Head</label>
-                        <select name="hh_head" class="form-control">
-                            <option hidden><?= $residents->hh_head; ?></option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
                         </select>
                     </div>
                     <div class="form-group col-xl-1">
@@ -205,7 +197,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         </select>
                     </div>
                     <div class="form-group col-xl-1">
-                        <label>Senior</label>
+                        <label>Senior Citizen</label>
                         <select name="senior_citizen" class="form-control">
                             <option hidden><?= $residents->senior_citizen; ?></option>
                             <option value="Yes">Yes</option>
@@ -214,20 +206,24 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </div>
 
                     <!-- Fifth Row -->
-                    <div class="form-group col-xl-3">
+                    <div class="form-group col-xl-2">
                         <label>Purok</label>
-                        <select name="purok" class="form-control">
-                            <option hidden><?= $residents->purok; ?></option>
-                            <option value="Purok-1">Purok-1</option>
-                            <option value="Purok-2">Purok-2</option>
-                            <option value="Purok-3">Purok-3</option>
-                            <option value="Purok-4">Purok-4</option>
-                            <option value="Purok-5">Purok-5</option>
-                            <option value="Purok-6">Purok-6</option>
-                            <option value="Purok-7">Purok-7</option>
+                        <select name="purok_id" class="form-control" id="fetchpurok">
+                            <?php foreach ($purok as $pur) {
+                                $userID = $pur->purok_id;
+                                $isSelected = $residents->purok_id === $userID ? 'selected' : '';
+                            ?>
+                                <option value="<?= $userID ?> " <?= $isSelected; ?>> <?= $pur->purok_desc; ?> </option>
+                            <?php }; ?>
                         </select>
                     </div>
-                    <div class="form-group col-xl-3">
+                    <div class="form-group col-xl-2">
+                        <label>Household</label>
+                        <select name="household_id" class="form-control" id="selecthouse">
+                            <option value=" <?= $residents->household_id; ?>"> <?= $residents->household_desc; ?> </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xl-2">
                         <label>User Type</label>
                         <select name="user_type" class="form-control">
                             <option hidden><?= $residents->user_type; ?></option>
@@ -237,17 +233,16 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Username</label>
-                        <input type="text" class="form-control" name="username" value="<?= $residents->username; ?>">
+                        <input type="text" class="form-control" name="username" placeholder="Enter username">
                     </div>
                     <div class="form-group col-xl-3">
                         <label>Password</label>
-                        <input type="text" class="form-control" name="password" value="<?= $residents->password; ?>">
+                        <input type="text" class="form-control" name="password" placeholder="Enter password">
                     </div>
 
                 </div>
-
                 <div class="form-group col-lg-1">
-                    <button type="submit" class="btn btn-primary btn-user">Update</button>
+                    <input type="submit" class="btn btn-primary btn-user" name="submit" id="submit">
                 </div>
             </div>
 
@@ -257,5 +252,45 @@ $page_session = \CodeIgniter\Config\Services::session();
 
 </form>
 
+
+<?= $this->endSection(); ?>
+
+<?= $this->section("script"); ?>
+
+<script>
+    $(document).ready(function() {
+        $("#fetchpurok").on('change', function() {
+            var value = $(this).val();
+            // alert(value);
+
+            $.ajax({
+                method: "GET", // GET, POST, PUT, DELETE, PATCH
+                url: "http://localhost/brms/residentcontroller/selectHH",
+                data: {
+                    'puroknumber': value,
+                },
+                success: function(response) {
+
+                    var select = $("#selecthouse")
+
+                    if (response) {
+                        $("#selecthouse").empty()
+                        response.forEach((household) => {
+                            var option = $("<option></option>")
+                            option.text(`${household.household_desc}`)
+                            // option.text(`${household.lname} ${household.fname} ${"Household"}`) // concat 
+                            option.val(household.household_id) // val
+
+                            // <option value="2">This is the text</option>
+
+                            select.append(option) // append
+                        })
+                    }
+                }
+            });
+
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

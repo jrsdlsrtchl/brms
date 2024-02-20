@@ -17,6 +17,7 @@ class ResidentController extends Controller
     public function addResident()
     {
         $data = [];
+        $data['purok'] = $this->resModel->choicePurok();
         $data['pageTitle'] = 'Resident';
         $session = \CodeIgniter\Config\Services::session();
 
@@ -43,9 +44,8 @@ class ResidentController extends Controller
                 'pwd' => $this->request->getVar('pwd'),
                 'senior_citizen' => $this->request->getVar('senior_citizen'),
                 'house_pos' => $this->request->getVar('house_pos'),
-                'hh_head' => $this->request->getVar('hh_head'),
-                'purok' => $this->request->getVar('purok'),
-                'user_type' => $this->request->getVar('user_type'),
+                'purok_id' => $this->request->getVar('purok_id'),
+                'household_id' => $this->request->getVar('household_id'),
                 'username' => $this->request->getVar('username'),
                 'password' => $this->request->getVar('password'),
                 'uniid' => $uniid,
@@ -75,6 +75,7 @@ class ResidentController extends Controller
     {
         $data = [];
         $data['residents'] = $this->resModel->editRes($id);
+        $data['purok'] = $this->resModel->choicePurok();
         $data['pageTitle'] = 'Resident';
         $session = \CodeIgniter\Config\Services::session();
 
@@ -100,8 +101,8 @@ class ResidentController extends Controller
                 'pwd' => $this->request->getVar('pwd'),
                 'senior_citizen' => $this->request->getVar('senior_citizen'),
                 'house_pos' => $this->request->getVar('house_pos'),
-                'hh_head' => $this->request->getVar('hh_head'),
-                'purok' => $this->request->getVar('purok'),
+                'purok_id' => $this->request->getVar('purok_id'),
+                'household_id' => $this->request->getVar('household_id'),
                 'user_type' => $this->request->getVar('user_type'),
                 'username' => $this->request->getVar('username'),
                 'password' => $this->request->getVar('password'),
@@ -140,6 +141,7 @@ class ResidentController extends Controller
     {
         $data['residents'] = $this->resModel->editRes($id);
         $data['pageTitle'] = 'Resident';
+        $data['purok'] = $this->resModel->choicePurok();
         return view("resident/res_singleview", $data);
     }
 
@@ -147,18 +149,18 @@ class ResidentController extends Controller
     {
 
         $data['purok'] = $this->resModel->choicePurok();
-
         return view("practice", $data);
     }
 
-    public function selectHH()
+    public function selectHH() // GET
     {
         $data['purok'] = $this->resModel->choicePurok();
 
-        $resID = $this->request->getPost('puroknumber');
+        //  $resID = $this->request->getPost('puroknumber'); // getPost 
+        $resID = $this->request->getGet('puroknumber'); // 
 
-        $data['households'] = $this->resModel->choiceHousehold($resID);
+        $data = $this->resModel->choiceHousehold($resID);
 
-        return view("practice", $data);
+        return $this->response->setJSON($data);
     }
 }

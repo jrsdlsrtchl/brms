@@ -49,7 +49,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="row card-body">
                     <div class="form-group" id="purok">
                         <label>Purok</label>
-                        <select name="purok" id="fetchpurok" class="form-control">
+                        <select name="purok_id" id="fetchpurok" class="form-control">
                             <option hidden>Select Purok</option>
                             <?php foreach ($purok as $pur) { ?>
                                 <option value="<?= $pur->purok_id; ?>"> <?= $pur->purok_desc; ?></option>
@@ -59,7 +59,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     <div class="form-group col-xl-2">
                         <label>Household</label>
                         <select name="household" class="form-control" id="selecthouse">
-                            <option value="" hidden>Select Household</option>
+                            <option hidden>Select Household</option>
                         </select>
                     </div>
                 </div>
@@ -74,6 +74,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 <?= $this->endSection(); ?>
 
 <?= $this->section("script"); ?>
+
 <script>
     $(document).ready(function() {
         $("#fetchpurok").on('change', function() {
@@ -81,17 +82,32 @@ $page_session = \CodeIgniter\Config\Services::session();
             // alert(value);
 
             $.ajax({
-                method: "POST",
-                url: "residentcontroller/practice",
+                method: "GET", // GET, POST, PUT, DELETE, PATCH
+                url: "http://localhost/brms/residentcontroller/selectHH",
                 data: {
                     'puroknumber': value,
                 },
                 success: function(response) {
-                    console.log(response);
+
+                    var select = $("#selecthouse")
+
+                    if (response) {
+                        $("#selecthouse").empty()
+                        response.forEach((household) => {
+                            var option = $("<option></option>")
+                            option.text(`${household.fname} ${household.lname}`) // concat 
+                            option.val(household.id) // val
+
+                            // <option value="2">This is the text</option>
+
+                            select.append(option) // append
+                        })
+                    }
                 }
             });
 
         });
     });
 </script>
+
 <?= $this->endSection(); ?>

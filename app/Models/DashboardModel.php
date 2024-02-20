@@ -34,14 +34,14 @@ class DashboardModel extends Model
         return $result;
     }
 
-    public function numHousehold()
-    {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('hh_head')->where('hh_head', 'Yes');
-        $result = $builder->countAllResults();
+    // public function numHousehold()
+    // {
+    //     $query = $this->db->table('residents');
+    //     $builder = $query->selectCount('hh_head')->where('hh_head', 'Yes');
+    //     $result = $builder->countAllResults();
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     public function numSeniorCitizen()
     {
