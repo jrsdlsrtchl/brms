@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $data['population'] = $this->dashModel->numPopulation();
         $data['male'] = $this->dashModel->numMale();
         $data['female'] = $this->dashModel->numFemale();
-        // $data['household'] = $this->dashModel->numHousehold();
+        $data['household'] = $this->dashModel->numHousehold();
         $data['senior'] = $this->dashModel->numSeniorCitizen();
         $data['pwd'] = $this->dashModel->numPwd();
         $data['fourPs'] = $this->dashModel->num4ps();

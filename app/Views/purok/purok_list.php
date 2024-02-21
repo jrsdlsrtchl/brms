@@ -13,7 +13,7 @@
 </style>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Purok List</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Purok</h1>
     <hr />
 </div>
 
@@ -45,7 +45,7 @@
                         <td> <?= $purokOne; ?></td>
                         <td> <?= $hhOne; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-1" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "1" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -57,7 +57,7 @@
                         <td> <?= $purokTwo; ?> </td>
                         <td> <?= $hhTwo; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-2" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "2" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -69,7 +69,7 @@
                         <td> <?= $purokThree; ?> </td>
                         <td> <?= $hhThree; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-3" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "3" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -81,7 +81,7 @@
                         <td> <?= $purokFour; ?> </td>
                         <td> <?= $hhFour; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-4" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "4" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -93,7 +93,7 @@
                         <td> <?= $purokFive; ?> </td>
                         <td> <?= $hhFive; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-5" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "5" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -105,7 +105,7 @@
                         <td> <?= $purokSix; ?> </td>
                         <td> <?= $hhSix; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-6" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "6" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>
@@ -117,7 +117,7 @@
                         <td> <?= $purokSeven; ?> </td>
                         <td> <?= $hhSeven; ?> </td>
                         <td>
-                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "Purok-7" ?>">
+                            <a href="<?= base_url(); ?>/purokcontroller/viewpuroklist/<?= $puroknumber = "7" ?>">
                                 <i class="fas fa-eye" style="color:blue"></i>
                             </a>
                         </td>

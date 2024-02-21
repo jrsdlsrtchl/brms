@@ -116,7 +116,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Households
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= $household ?> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-house fa-2x text-gray-300"></i>

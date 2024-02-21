@@ -16,6 +16,7 @@ class PurokController extends Controller
 
     public function purokList()
     {
+
         $data['purokOne'] = $this->purModel->purokUno();
         $data['purokTwo'] = $this->purModel->purokDos();
         $data['purokThree'] = $this->purModel->purokTres();

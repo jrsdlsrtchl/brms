@@ -109,7 +109,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     <div class="form-group col-xl-3">
                         <label>Educational Attainment</label>
                         <select name="education" class="form-control">
-                            <option value="" hidden>Select Ethnicity</option>
+                            <option value="" hidden>Select Educational Status</option>
                             <option value="None">None</option>
                             <option value="ALS">ALS</option>
                             <option value="Vocational">Vocational</option>

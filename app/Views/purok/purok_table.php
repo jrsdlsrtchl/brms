@@ -1,7 +1,3 @@
-<?php
-$page_session = \CodeIgniter\Config\Services::session();
-?>
-
 <?= $this->extend("layout/base"); ?>
 
 <?= $this->section("content"); ?>
@@ -14,7 +10,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Residents Information</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Purok</h1>
     <hr />
     <a href="<?= base_url() ?>purokcontroller/puroklist" class="d d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-arrow-left"></i> Back </a>
 </div>
@@ -24,21 +20,6 @@ $page_session = \CodeIgniter\Config\Services::session();
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Residents Information</h6>
     </div>
-
-    <?php if ($page_session->getTempdata('success')) : ?>
-        <div id="hidemessage" class="badge badge-success pt-2">
-            <h6>
-                <?= $page_session->getTempdata('success'); ?>
-            </h6>
-        </div>
-    <?php endif; ?>
-    <?php if ($page_session->getTempdata('error')) : ?>
-        <div id="hidemessage" class="badge badge-success pt-2">
-            <h6>
-                <?= $page_session->getTempdata('error'); ?>
-            </h6>
-        </div>
-    <?php endif; ?>
 
     <div class="card-body">
         <div class="table-responsive">
@@ -68,7 +49,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <td> <?= $res['age']; ?> </td>
                             <td> <?= $res['mobile']; ?> </td>
                             <td> <?= $res['datebirth']; ?> </td>
-                            <td> <?= $res['purok']; ?> </td>
+                            <td> <?= $res['purok_desc']; ?> </td>
                             <td>
                                 <a href="<?= base_url(); ?>residentcontroller/editresident/<?= $res['uniid']; ?>"><i class="fas fa-edit" style="color:green"></i></a> |
 

@@ -1,11 +1,22 @@
+<?php
+$page_session = \CodeIgniter\Config\Services::session();
+?>
+
 <?= $this->extend("layout/base"); ?>
 
 <?= $this->section("content"); ?>
 
+<script>
+    setTimeout(function() {
+        $("#hidemessage").hide();
+    }, 3000);
+</script>
+
+
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Household List</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Household</h1>
     <hr />
 </div>
 
@@ -29,7 +40,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseOne as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -45,9 +56,9 @@
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <div class="list-group mb-2">
+                            <div class="list-group">
                                 <?php foreach ($houseTwo as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -65,7 +76,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseThree as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -83,7 +94,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseFour as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc;; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -101,7 +112,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseFive as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -119,7 +130,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseSix as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -137,7 +148,7 @@
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseSeven as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house['lname'] . ", " . $house['fname']; ?> </a>
+                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -149,5 +160,45 @@
     </div>
 </div>
 
+<form name="addphlebotomist" method="post">
+    <div class="container">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Add Household</h6>
+            </div>
+            <!-- Messages for SUCCESS and ERRORS -->
+            <?php if ($page_session->getTempdata('success')) : ?>
+                <div id="hidemessage" class="badge badge-success pt-2">
+                    <h6>
+                        <?= $page_session->getTempdata('success'); ?>
+                    </h6>
+                </div>
+            <?php endif; ?>
+            <?php if ($page_session->getTempdata('error')) : ?>
+                <div id="hidemessage" class="badge badge-danger pt-2">
+                    <?= $page_session->getTempdata('error'); ?>
+                </div>
+            <?php endif; ?>
+            <div class="row card-body ">
+                <div class="form-group col-xl-6">
+                    <label>Household Name</label>
+                    <input type="text" class="form-control" name="household_desc" placeholder="Enter last household name">
+                </div>
+                <div class="form-group col-xl-6">
+                    <label>Purok</label>
+                    <select name="purok_id" class="form-control" id="fetchpurok">
+                        <option value="" hidden>Select Purok</option>
+                        <?php foreach ($purok as $pur) { ?>
+                            <option value="<?= $pur->purok_id; ?>"> <?= $pur->purok_desc; ?> </option>
+                        <?php }; ?>
+                    </select>
+                </div>
+                <div class="form-group col-xl-12">
+                    <input type="submit" class="btn btn-primary btn-block mt-3" name="submit" id="submit">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <?= $this->endSection(); ?>

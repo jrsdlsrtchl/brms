@@ -8,9 +8,9 @@ class HouseholdModel extends Model
 {
     public function houseUno()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-1')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '1');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -20,9 +20,9 @@ class HouseholdModel extends Model
 
     public function houseDos()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-2')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '2');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -32,9 +32,9 @@ class HouseholdModel extends Model
 
     public function houseTres()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-3')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '3');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -44,9 +44,9 @@ class HouseholdModel extends Model
 
     public function houseKwatro()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-4')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '4');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -56,9 +56,9 @@ class HouseholdModel extends Model
 
     public function houseSingko()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-5')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '5');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -68,9 +68,9 @@ class HouseholdModel extends Model
 
     public function houseSays()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-6')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '6');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
         } else {
@@ -80,11 +80,33 @@ class HouseholdModel extends Model
 
     public function houseSyete()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', 'Purok-7')->where('hh_head', 'Yes');
-        $result = $builder->get()->getResultArray();
+        $query = $this->db->table('household');
+        $builder = $query->where('purok_id', '7');
+        $result = $builder->get()->getResult();
         if (count($result) >= 0) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function choicePurok()
+    {
+        $query = $this->db->table('purok')->get();
+        $result = $query->getResult();
+
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function addhousehold($data)
+    {
+        $this->db->table('household')->insert($data);
+        if ($this->db->affectedRows() >= 1) {
+            return $this->db->insertID();
         } else {
             return false;
         }

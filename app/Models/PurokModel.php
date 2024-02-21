@@ -9,8 +9,8 @@ class PurokModel extends Model
 
     public function viewPurok($puroknumber)
     {
-        $query = $this->db->table('residents');
-        $builder = $query->where('purok', $puroknumber)->get();
+        $query = $this->db->table('residents')->join('purok', 'residents.purok_id = purok.purok_id');
+        $builder = $query->where('residents.purok_id', $puroknumber)->get();
         $result = $builder->getResultArray();
 
         if (count($result) >= 0) {
@@ -23,7 +23,7 @@ class PurokModel extends Model
     public function purokUno()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-1');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '1');
         $result = $builder->countAllResults();
 
         return $result;
@@ -32,7 +32,7 @@ class PurokModel extends Model
     public function purokDos()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-2');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '2');
         $result = $builder->countAllResults();
 
         return $result;
@@ -41,7 +41,7 @@ class PurokModel extends Model
     public function purokTres()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-3');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '3');
         $result = $builder->countAllResults();
 
         return $result;
@@ -50,7 +50,7 @@ class PurokModel extends Model
     public function purokKwatro()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-4');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '4');
         $result = $builder->countAllResults();
 
         return $result;
@@ -59,7 +59,7 @@ class PurokModel extends Model
     public function purokSingko()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-5');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '5');
         $result = $builder->countAllResults();
 
         return $result;
@@ -68,7 +68,7 @@ class PurokModel extends Model
     public function purokSays()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-6');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '6');
         $result = $builder->countAllResults();
 
         return $result;
@@ -77,7 +77,7 @@ class PurokModel extends Model
     public function purokSyete()
     {
         $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-7');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '7');
         $result = $builder->countAllResults();
 
         return $result;
@@ -85,8 +85,8 @@ class PurokModel extends Model
 
     public function HHpurokUno()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-1')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '1');
         $result = $builder->countAllResults();
 
         return $result;
@@ -94,8 +94,8 @@ class PurokModel extends Model
 
     public function HHpurokDos()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-2')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '2');
         $result = $builder->countAllResults();
 
         return $result;
@@ -103,8 +103,8 @@ class PurokModel extends Model
 
     public function HHpurokTres()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-3')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '3');
         $result = $builder->countAllResults();
 
         return $result;
@@ -112,8 +112,8 @@ class PurokModel extends Model
 
     public function HHpurokKwatro()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-4')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '4');
         $result = $builder->countAllResults();
 
         return $result;
@@ -121,8 +121,8 @@ class PurokModel extends Model
 
     public function HHpurokSingko()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-5')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '5');
         $result = $builder->countAllResults();
 
         return $result;
@@ -130,8 +130,8 @@ class PurokModel extends Model
 
     public function HHpurokSays()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-6')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('puro_id')->where('purok_id', '6');
         $result = $builder->countAllResults();
 
         return $result;
@@ -139,8 +139,8 @@ class PurokModel extends Model
 
     public function HHpurokSyete()
     {
-        $query = $this->db->table('residents');
-        $builder = $query->selectCount('purok')->where('purok', 'Purok-7')->where('hh_head', 'Yes');
+        $query = $this->db->table('household');
+        $builder = $query->selectCount('purok_id')->where('purok_id', '7');
         $result = $builder->countAllResults();
 
         return $result;
