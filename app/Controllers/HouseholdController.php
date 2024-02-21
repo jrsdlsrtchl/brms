@@ -48,6 +48,13 @@ class HouseholdController extends Controller
         return view("household/household_table", $data);
     }
 
+    public function membersHH($id)
+    {
+        $data['membersHH'] = $this->houseModel->getMembersHH($id);
+
+        return view("household/household_view", $data);
+    }
+
     // public function addHousehold()
     // {
     //     $data = [];

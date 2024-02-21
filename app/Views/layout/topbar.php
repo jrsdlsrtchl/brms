@@ -7,6 +7,7 @@
 
           <!-- Topbar Search -->
 
+
           <?php //if ($_SESSION['aid']) : 
             ?>
 
@@ -32,8 +33,6 @@
                       </form>
                   </div>
               </li>
-
-
 
 
               <div class="topbar-divider d-none d-sm-block"></div>

@@ -29,6 +29,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         <div class="card-body">
             <div class="accordion accordion-flush" id="accordionFlushExample">
 
+
                 <div class="accordion-item mb-3">
                     <h2 class="accordion-header " id="flush-headingOne">
                         <button class="accordion-button collapsed form-control btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -40,12 +41,13 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseOne as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="accordion-item mb-3">
                     <h2 class="accordion-header " id="flush-headingTwo">
@@ -58,7 +60,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group">
                                 <?php foreach ($houseTwo as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -76,7 +78,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseThree as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -94,7 +96,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseFour as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc;; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc;; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -112,7 +114,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseFive as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -130,7 +132,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseSix as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>
@@ -148,7 +150,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="accordion-body">
                             <div class="list-group mb-2">
                                 <?php foreach ($houseSeven as $house) { ?>
-                                    <a href="#" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
+                                    <a href="<?= base_url(); ?>householdcontroller/membersHH/<?= $house->household_id; ?>" class="list-group-item list-group-item-action"> <?= $house->household_desc; ?> </a>
                                 <?php }; ?>
                             </div>
                         </div>

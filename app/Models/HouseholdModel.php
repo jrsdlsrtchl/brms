@@ -111,4 +111,14 @@ class HouseholdModel extends Model
             return false;
         }
     }
+
+    public function getMembersHH($id)
+    {
+        $query = $this->db->table('residents')
+            ->join('household', 'residents.household_id = household.household_id')
+            ->where('residents.household_id', $id);
+        $builder = $query->get()->getResult();
+
+        return $builder;
+    }
 }
